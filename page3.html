@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>try{var s=JSON.parse(localStorage.getItem('prithvi.session.v1'));if(!s||!s.username||s.expires<Date.now())location.replace('index.html');}catch(e){location.replace('index.html');}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page 3 · Prithvi Realcon Cardamom Plantation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <style>
+/* =========================================================
+   Prithvi Realcon & Transportation Pvt. Ltd.
+   Cardamom Plantation – Labour Attendance & Wages
+   Theme: cardamom pods + tea terraces
+   ========================================================= */
+
+:root {
+  --forest: #14341f;
+  --forest-2: #1f4d31;
+  --leaf: #3f8a47;
+  --leaf-soft: #e3efd3;
+  --pod: #b9d37f;          /* cardamom pod green */
+  --pod-deep: #7d9a46;
+  --cream: #fbf8ec;
+  --paper: rgba(251, 248, 236, 0.93);
+  --ink: #1c2a1f;
+  --muted: #5b6a5d;
+  --spice: #a5622a;        /* cardamom husk / spice brown */
+  --gold: #d9a441;
+  --danger: #b3412f;
+  --line: rgba(20, 52, 31, 0.14);
+  --shadow: 0 10px 30px rgba(14, 40, 22, 0.18);
+  --radius: 18px;
+  --font-display: "Fraunces", "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "DM Sans", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--ink);
+  line-height: 1.5;
+  background-color: #6f9d6f;               /* fallback if the image is missing */
+  background-image: linear-gradient(180deg, #cfe3d2 0%, #a6c6a3 35%, #4f8a55 70%, #2c6a34 100%);
+  background-attachment: fixed;
+}
+
+/* Plantation scene: fixed behind everything (works on phones too) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(180deg, rgba(20, 52, 31, 0.0) 0%, rgba(20, 52, 31, 0.18) 100%),
+    url("images/plantation.svg");
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  filter: blur(1.5px) saturate(0.92);      /* soft focus, less flat */
+  transform: scale(1.03);
+}
+
+/* Real photo backgrounds (added by script.js when images/photos/bg1.jpg … exist) */
+body.has-photo::before { display: none; }
+.bg-stage { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: #1d3a26; }
+.bg-photo { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.8s ease; }
+.bg-photo.is-active { opacity: 1; }
+.bg-stage::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 34, 18, 0.34) 0%, rgba(10, 34, 18, 0.12) 45%, rgba(10, 34, 18, 0.42) 100%); }
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+h2 { font-size: 1.25rem; color: var(--forest); }
+p { margin: 0; }
+a { color: inherit; }
+[hidden] { display: none !important; }
+
+.container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: linear-gradient(180deg, rgba(14, 40, 22, 0.94), rgba(20, 52, 31, 0.88));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 3px solid var(--pod-deep);
+  color: #fff;
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 10px; padding-bottom: 10px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; min-width: 0; }
+.brand-mark { width: 44px; height: 44px; flex: none; }
+.brand-text { display: flex; flex-direction: column; min-width: 0; }
+.brand-text strong { font-family: var(--font-display); font-size: 1.08rem; font-weight: 600; line-height: 1.2; }
+.brand-text small { color: var(--pod); font-size: 0.78rem; letter-spacing: 0.02em; }
+
+.main-nav { display: flex; gap: 6px; flex-wrap: wrap; }
+.main-nav a {
+  text-decoration: none; padding: 8px 16px; border-radius: 999px;
+  font-size: 0.92rem; font-weight: 500; color: #e8f2d9;
+  border: 1px solid transparent; transition: background .15s, color .15s;
+}
+.main-nav a:hover { background: rgba(255, 255, 255, 0.12); }
+.main-nav a[aria-current="page"] { background: var(--pod); color: var(--forest); font-weight: 700; }
+
+/* ---------- Page layout ---------- */
+.page { padding-top: 24px; padding-bottom: 56px; display: flex; flex-direction: column; gap: 20px; }
+
+.hero {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  padding: 24px 28px; border-radius: var(--radius); color: #fff;
+  background: linear-gradient(120deg, rgba(14, 40, 22, 0.88), rgba(31, 77, 49, 0.78));
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.hero h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); line-height: 1.1; }
+.eyebrow { text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.72rem; color: var(--pod); font-weight: 700; margin-bottom: 6px; }
+.hero-sub { color: #d6e6c3; margin-top: 6px; font-size: 0.98rem; }
+
+.date-picker { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.date-picker input[type="date"] { width: auto; min-width: 150px; }
+.icon-btn {
+  width: 40px; height: 40px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.12); color: #fff; font-size: 1.3rem; line-height: 1; cursor: pointer;
+}
+.icon-btn:hover { background: rgba(255, 255, 255, 0.24); }
+
+.card {
+  background: var(--paper);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 24px;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.card-head .hint { color: var(--muted); font-size: 0.86rem; }
+
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+
+/* ---------- Stat cards ---------- */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.stat {
+  position: relative; overflow: hidden;
+  background: var(--paper); border-radius: var(--radius); padding: 22px 24px 20px;
+  box-shadow: var(--shadow); border: 1px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.stat::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--leaf); }
+.stat.stat-labour::before { background: var(--gold); }
+.stat.stat-wages::before { background: var(--spice); }
+.stat-icon { position: absolute; right: 18px; top: 16px; width: 44px; height: 44px; opacity: 0.9; }
+.stat-label { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 700; }
+.stat-value { font-family: var(--font-display); font-size: clamp(2rem, 4.2vw, 2.9rem); font-weight: 600; color: var(--forest); line-height: 1.1; margin: 6px 0 4px; font-variant-numeric: tabular-nums; }
+.stat-note { color: var(--muted); font-size: 0.9rem; }
+
+/* ---------- Breakdown rows ---------- */
+.breakdown { display: flex; flex-direction: column; gap: 4px; }
+.b-row { display: grid; grid-template-columns: minmax(0, 1.5fr) 56px 76px minmax(0, 1fr); gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px dashed var(--line); font-size: 0.93rem; }
+.b-row.b-head { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 700; padding-top: 0; }
+.b-row .num, .t-num { text-align: right; font-variant-numeric: tabular-nums; }
+.b-row .bar-cell { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
+.bar { height: 8px; border-radius: 99px; background: var(--leaf-soft); flex: 1; overflow: hidden; min-width: 30px; }
+.bar > span { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--leaf), var(--pod-deep)); }
+.b-row.b-total { border-bottom: 0; border-top: 2px solid var(--forest); font-weight: 700; margin-top: 4px; padding-top: 12px; color: var(--forest); }
+.sub { color: var(--muted); font-size: 0.82rem; }
+
+.empty { padding: 22px; text-align: center; color: var(--muted); background: rgba(227, 239, 211, 0.55); border-radius: 12px; border: 1px dashed var(--pod-deep); }
+.empty a { color: var(--forest-2); font-weight: 700; }
+
+/* ---------- Trend chart ---------- */
+.trend { display: flex; align-items: flex-end; gap: 10px; height: 220px; padding-top: 24px; }
+.trend-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; min-width: 0; }
+.trend-val { font-size: 0.74rem; color: var(--muted); font-variant-numeric: tabular-nums; margin-bottom: 4px; white-space: nowrap; }
+.trend-bar { width: 100%; max-width: 54px; min-height: 3px; border-radius: 8px 8px 3px 3px; background: linear-gradient(180deg, var(--pod-deep), var(--leaf)); transition: height .3s; }
+.trend-col.is-selected .trend-bar { background: linear-gradient(180deg, var(--gold), var(--spice)); }
+.trend-col.is-selected .trend-val { color: var(--spice); font-weight: 700; }
+.trend-lbl { margin-top: 8px; font-size: 0.74rem; color: var(--muted); text-align: center; line-height: 1.2; }
+
+/* ---------- Plants, area-wise ---------- */
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.tab { font: inherit; font-weight: 700; font-size: 0.92rem; cursor: pointer; padding: 8px 18px; border-radius: 999px; border: 1.5px solid var(--pod-deep); background: #fff; color: var(--forest); transition: background .15s, color .15s; }
+.tab:hover { background: var(--leaf-soft); }
+.tab.is-active { background: var(--forest); border-color: var(--forest); color: #fff; }
+.proj-bar { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.proj-bar label { flex: 1; max-width: 360px; }
+#plantPanel .hint { color: var(--muted); font-size: 0.88rem; margin: 6px 0 12px; }
+.sub-title { font-size: 1.05rem; color: var(--forest); margin: 22px 0 10px; }
+.plant-table td, .plant-table th { padding: 10px 14px; }
+.plant-table td { font-variant-numeric: tabular-nums; }
+.plant-table input.num { width: 110px; }
+.plant-table td.cell-total { font-weight: 700; color: var(--forest); background: rgba(227, 239, 211, 0.45); }
+.plant-table thead th.col-live { background: var(--leaf); }
+.plant-table thead th.col-damaged { background: var(--spice); }
+.plant-table tfoot td { font-size: 1.05rem; }
+.add-project { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; margin-top: 18px; max-width: 520px; }
+
+/* ---------- Forms ---------- */
+label { display: flex; flex-direction: column; gap: 6px; font-size: 0.82rem; font-weight: 700; color: var(--forest-2); text-transform: uppercase; letter-spacing: 0.06em; }
+input, select {
+  font: inherit; color: var(--ink); width: 100%;
+  padding: 10px 12px; border-radius: 10px; border: 1.5px solid #b7c9a5;
+  background: #fff; min-height: 42px;
+  text-transform: none; letter-spacing: 0; font-weight: 500;
+}
+input:focus, select:focus, button:focus-visible, a:focus-visible { outline: 3px solid rgba(217, 164, 65, 0.55); outline-offset: 1px; border-color: var(--leaf); }
+input[type="number"] { text-align: right; font-variant-numeric: tabular-nums; }
+input.num { width: 76px; text-align: center; padding: 8px 6px; }
+.form-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-bottom: 22px; max-width: 640px; }
+.form-section { margin-top: 24px; }
+.form-section:first-of-type { margin-top: 0; }
+.form-section > h2 { margin-bottom: 4px; }
+.form-section > .hint { color: var(--muted); font-size: 0.88rem; margin-bottom: 10px; }
+
+.btn {
+  font: inherit; font-weight: 700; cursor: pointer; border-radius: 12px; padding: 11px 20px; min-height: 44px;
+  border: 1.5px solid var(--forest); background: transparent; color: var(--forest);
+  transition: transform .1s, background .15s, color .15s;
+}
+.btn:hover { background: rgba(20, 52, 31, 0.08); }
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--forest); color: #fff; }
+.btn-primary:hover { background: var(--forest-2); }
+.btn-gold { background: var(--gold); border-color: var(--gold); color: #3a2a06; }
+.btn-gold:hover { background: #e4b24f; }
+.btn-danger { color: var(--danger); border-color: var(--danger); }
+.btn-danger:hover { background: rgba(179, 65, 47, 0.1); }
+.btn-sm { padding: 6px 12px; min-height: 34px; font-size: 0.85rem; border-radius: 9px; }
+.btn[disabled] { opacity: 0.4; cursor: not-allowed; }
+
+/* ---------- Entry tables ---------- */
+.table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--line); background: #fff; }
+table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+th, td { padding: 9px 12px; text-align: center; border-bottom: 1px solid var(--line); }
+thead th { background: var(--forest); color: #fff; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 700; white-space: nowrap; }
+thead th small { display: block; color: var(--pod); font-weight: 500; letter-spacing: 0; text-transform: none; font-size: 0.74rem; }
+tbody th, td.t-left, th.t-left { text-align: left; }
+tbody th { font-weight: 700; color: var(--forest); background: var(--leaf-soft); white-space: nowrap; }
+tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
+tbody tr:hover td { background: rgba(185, 211, 127, 0.14); }
+td.cell-amount { font-weight: 700; color: var(--forest); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+td.cell-persons { font-variant-numeric: tabular-nums; }
+tfoot td, tfoot th { background: var(--leaf-soft); font-weight: 700; color: var(--forest); border-bottom: 0; }
+.rate-tag { color: var(--muted); font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+
+.bus-row { display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-top: 18px; padding: 14px 16px; border-radius: 12px; background: var(--leaf-soft); border: 1px dashed var(--pod-deep); }
+.bus-row label { max-width: 240px; }
+.bus-row p { color: var(--muted); font-size: 0.88rem; flex: 1; min-width: 200px; }
+
+/* summary */
+.summary {
+  position: sticky; bottom: 12px; z-index: 20; margin-top: 24px;
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)) auto; gap: 14px; align-items: center;
+  background: linear-gradient(120deg, rgba(14, 40, 22, 0.96), rgba(31, 77, 49, 0.94));
+  color: #fff; border-radius: 16px; padding: 14px 20px; box-shadow: 0 12px 34px rgba(8, 28, 15, 0.45);
+}
+.sum-item small { display: block; color: var(--pod); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+.sum-item strong { font-family: var(--font-display); font-size: 1.28rem; font-variant-numeric: tabular-nums; }
+.sum-item.sum-total strong { color: var(--gold); font-size: 1.5rem; }
+.sum-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.summary .btn { border-color: rgba(255, 255, 255, 0.5); color: #fff; }
+.summary .btn:hover { background: rgba(255, 255, 255, 0.14); }
+.summary .btn-gold { color: #3a2a06; border-color: var(--gold); }
+.summary .btn-gold:hover { background: #e4b24f; }
+
+.banner { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 12px 18px; border-radius: 14px; background: #fff3d2; border: 1.5px solid var(--gold); color: #5a410b; box-shadow: var(--shadow); }
+
+/* rates */
+details.card > summary { cursor: pointer; font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--forest); list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+details.card > summary::-webkit-details-marker { display: none; }
+details.card > summary::after { content: "+"; font-size: 1.5rem; color: var(--spice); line-height: 1; }
+details.card[open] > summary::after { content: "–"; }
+.rates-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 18px 0 14px; }
+.rates-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* blank page */
+.blank-card { min-height: 360px; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--muted); }
+.blank-card p { max-width: 380px; }
+
+/* toast */
+.toast { position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; z-index: 100; padding: 12px 20px; border-radius: 12px; background: var(--forest); color: #fff; font-weight: 600; box-shadow: var(--shadow); transition: opacity .2s, transform .2s; max-width: calc(100vw - 32px); }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+.toast.error { background: var(--danger); }
+
+.site-footer { text-align: center; color: #f1f6e4; font-size: 0.82rem; padding: 0 16px 28px; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px) {
+  .stats { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .rates-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .summary { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .sum-actions { grid-column: 1 / -1; }
+}
+
+@media (max-width: 640px) {
+  .brand-text small { display: none; }
+  .hero { padding: 18px; }
+  .card { padding: 18px 16px; }
+  .form-row { grid-template-columns: 1fr; }
+  .b-row { grid-template-columns: minmax(0, 1.4fr) 44px 70px; }
+  .b-row .bar-cell { display: none; }
+  .b-row.b-head .bar-cell { display: none; }
+
+  /* entry tables turn into stacked cards */
+  .entry-table thead { display: none; }
+  .entry-table, .entry-table tbody, .entry-table tr, .entry-table td, .entry-table th { display: block; width: 100%; }
+  .entry-table tr { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; padding: 12px; border-bottom: 1px solid var(--line); }
+  .entry-table tbody th { grid-column: 1 / -1; background: transparent; padding: 0; border: 0; }
+  .entry-table td { border: 0; padding: 0; text-align: left; }
+  .entry-table td::before { content: attr(data-label); display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); font-weight: 700; margin-bottom: 2px; }
+  .entry-table input.num { width: 100%; text-align: left; }
+  .entry-table td.cell-amount, .entry-table td.cell-persons { text-align: left; }
+  .summary { grid-template-columns: 1fr 1fr; bottom: 8px; padding: 10px 14px; gap: 8px 12px; }
+  .summary .sum-item { display: none; }
+  .summary .sum-item:first-child, .summary .sum-item.sum-total { display: block; }
+  .sum-item strong { font-size: 1.05rem; }
+  .sum-item.sum-total { text-align: right; }
+  .sum-item.sum-total strong { font-size: 1.3rem; }
+  .sum-actions { flex-wrap: nowrap; }
+  .sum-actions .btn-gold { flex: 1; }
+  .main-nav { width: 100%; justify-content: space-between; }
+  .main-nav a { padding: 8px 12px; font-size: 0.88rem; }
+  .header-inner { gap: 8px; }
+  .plant-table td, .plant-table th { padding: 8px 6px; font-size: 0.86rem; }
+  .plant-table input.num { width: 100%; min-width: 0; padding: 8px 4px; }
+  .plant-table thead th { font-size: 0.66rem; letter-spacing: 0.03em; white-space: normal; }
+  .trend { gap: 5px; }
+  .trend-val { font-size: 0.64rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}
+
+@media print {
+  body { background: #fff; }
+  .site-header, .summary, .date-picker, .toast, .btn { display: none !important; }
+  .card, .stat { box-shadow: none; border: 1px solid #ccc; }
+}
+
+/* ---------- Login + signed-in bar ---------- */
+body[data-page="login"] .page { justify-content: center; min-height: calc(100vh - 150px); }
+.login-card { width: 100%; max-width: 440px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; padding: 28px 28px 26px; }
+.login-card h1 { font-size: 1.8rem; color: var(--forest); line-height: 1.15; }
+.login-card .eyebrow { color: var(--spice); margin-bottom: 4px; }
+.login-card .login-sub { color: var(--muted); font-size: 0.94rem; margin-top: 6px; }
+.login-form { display: flex; flex-direction: column; gap: 16px; }
+.check { flex-direction: row; align-items: center; gap: 8px; text-transform: none; letter-spacing: 0; font-weight: 500; font-size: 0.9rem; color: var(--ink); cursor: pointer; }
+.check input { width: auto; min-height: 0; accent-color: var(--forest); }
+.form-msg { padding: 10px 14px; border-radius: 10px; background: #fbe4df; border: 1px solid var(--danger); color: #7a2619; font-size: 0.9rem; }
+.login-form .btn { width: 100%; }
+
+.user-chip { align-self: center; color: var(--pod); font-size: 0.85rem; padding: 0 6px 0 10px; white-space: nowrap; }
+.nav-logout {
+  font: inherit; font-size: 0.88rem; font-weight: 600; cursor: pointer; color: #fff;
+  background: transparent; border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 999px; padding: 7px 14px;
+}
+.nav-logout:hover { background: rgba(255, 255, 255, 0.14); }
+
+.is-loading main { opacity: 0.45; pointer-events: none; transition: opacity 0.2s; }
+.fatal { text-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center; padding: 36px 24px; }
+.fatal p { max-width: 520px; color: var(--ink); }
+.fatal .fatal-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+
+@media (max-width: 640px) {
+  .login-card { padding: 22px 18px; }
+  .user-chip { flex: 1; padding-left: 4px; }
+}
+
+</style>
+</head>
+<body data-page="page3">
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="home.html">
+        <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="24" cy="24" r="23" fill="#1f4d31" stroke="#b9d37f" stroke-width="2"/>
+          <path d="M9 37 C13 29 22 27 31 30 C25 38 16 41 9 37Z" fill="#3f8a47"/>
+          <g transform="rotate(-35 24 22)">
+            <ellipse cx="24" cy="22" rx="7.5" ry="14.5" fill="#b9d37f"/>
+            <path d="M24 8 V36 M19.2 11 Q17 22 19.2 33 M28.8 11 Q31 22 28.8 33" stroke="#7d9a46" stroke-width="1.2" fill="none"/>
+          </g>
+        </svg>
+        <span class="brand-text">
+          <strong>Prithvi Realcon &amp; Transportation</strong>
+          <small>Private Limited · Cardamom Plantation, Kerala</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="home.html">Dashboard</a>
+        <a href="attendance.html">Attendance Entry</a>
+        <a href="page3.html" aria-current="page">Page 3</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container page">
+    <!-- Page 3 is intentionally blank. It will be planned later. -->
+    <section class="card blank-card" aria-label="Reserved page">
+      <p>This page is reserved. Content will be added once it has been planned.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">© Prithvi Realcon &amp; Transportation Private Limited · Cardamom Plantation, Kerala</footer>
+
+  <script>
+/* =========================================================
+   Prithvi Realcon & Transportation Pvt. Ltd.
+   Cardamom Plantation – Labour Attendance & Wages
+   One script for all pages (dashboard, attendance, page 3).
+   Data is saved in a Supabase database. Sign-in is checked against
+   the app_users table (see supabase_setup.sql).
+   ========================================================= */
+(function () {
+  'use strict';
+
+  /* ---------------------------------------------------------
+     0. SUPABASE CONNECTION  (paste your own values here)
+        Supabase dashboard -> Project Settings -> API
+          Project URL  -> SUPABASE_URL
+          anon / publishable key -> SUPABASE_KEY
+        Use the same two values in index.html, home.html,
+        attendance.html and page3.html.
+     --------------------------------------------------------- */
+  var SUPABASE_URL = 'https://lflsewvyhyfmuegksscy.supabase.co';
+  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxmbHNld3Z5aHlmbXVlZ2tzc2N5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE0NTY3MjIsImV4cCI6MjEwNzAzMjcyMn0.BKNDWGKs4MX7MFL4FD0ECesgFciFmMRpMdmQUnARj7s';
+
+  /* ---------------------------------------------------------
+     1. CONFIGURATION  (edit here to change areas / default rates)
+     --------------------------------------------------------- */
+
+  // Work areas shown on the attendance form (same as the Excel sheet).
+  var AREAS = [1, 2, 3, 4, 5].map(function (n) {
+    return { key: 'area' + n, label: 'Area ' + n };
+  });
+
+  // Default daily wage rates in rupees – taken from the Excel sheet.
+  var DEFAULT_RATES = {
+    regularMale: 700,    // regular labour male
+    regularFemale: 600,  // regular labour female
+    outerMale: 600,      // outer labour male
+    outerFemale: 500,    // outer labour female
+    holeMaking: 900,     // hole making labour (male or female)
+    treeCutting: 1100,   // tree cutting labour (male or female)
+    busFare: 60          // bus fare, per person
+  };
+
+  // Wage categories (used on the dashboard).
+  var CATEGORIES = [
+    { key: 'regularMale',   label: 'Regular labour · Male' },
+    { key: 'regularFemale', label: 'Regular labour · Female' },
+    { key: 'outerMale',     label: 'Outer labour · Male' },
+    { key: 'outerFemale',   label: 'Outer labour · Female' },
+    { key: 'holeMaking',    label: 'Hole making' },
+    { key: 'treeCutting',   label: 'Tree cutting' }
+  ];
+
+  // Special work rows on the attendance form.
+  var SPECIAL = [
+    { key: 'hole', label: 'Hole making', rate: 'holeMaking' },
+    { key: 'tree', label: 'Tree cutting', rate: 'treeCutting' }
+  ];
+
+  // Projects (estates) from the sheet. Every project has the same 5 work areas.
+  // Plant counts start at 0 – enter live and damaged plants per area on the dashboard.
+  function newProject(id, name) {
+    var areas = {};
+    AREAS.forEach(function (a) { areas[a.key] = { live: 0, damaged: 0 }; });
+    return { id: id, name: name, areas: areas };
+  }
+  var DEFAULT_PROJECTS = [
+    newProject('p-ellapara', 'Ellapara'),
+    newProject('p-permade', 'Permade')
+  ];
+
+  // Real photographs for the page background (put the files in the images/photos folder).
+  // One photo is shown as is; two or more fade into each other. Change the names here if needed.
+  var BACKGROUND_PHOTOS = [
+    'images/photos/bg1.jpg',
+    'images/photos/bg2.jpg',
+    'images/photos/bg3.jpg'
+  ];
+  var BACKGROUND_SECONDS = 14;   // seconds each photo stays on screen
+
+  var KEYS = {
+    rates: 'prithvi.rates.v1',
+    projects: 'prithvi.projects.v1',
+    entries: 'prithvi.entries.v1'
+  };
+
+  var WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  /* ---------------------------------------------------------
+     2. HELPERS
+     --------------------------------------------------------- */
+
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function $$(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+  function clone(v) { return JSON.parse(JSON.stringify(v)); }
+  function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+
+  // Whole, non-negative number from any input value.
+  function num(v) {
+    var n = Math.floor(Number(v));
+    return isFinite(n) && n > 0 ? n : 0;
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function money(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+  function count(n) { return Math.round(n).toLocaleString('en-IN'); }
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function toISO(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function today() { return toISO(new Date()); }
+  function parseISO(s) {
+    var p = String(s).split('-');
+    return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+  }
+  function addDays(s, n) {
+    var d = parseISO(s);
+    d.setDate(d.getDate() + n);
+    return toISO(d);
+  }
+  function fmtLong(s) {
+    var d = parseISO(s);
+    return WEEKDAYS[d.getDay()] + ', ' + d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear();
+  }
+  function fmtShortValue(n) {
+    if (!n) return '–';
+    if (n >= 100000) return (n / 100000).toFixed(1).replace(/\.0$/, '') + 'L';
+    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+    return String(n);
+  }
+
+  /* ---------------------------------------------------------
+     Database access (Supabase REST API, no extra library needed)
+     --------------------------------------------------------- */
+  var SESSION_KEY = 'prithvi.session.v1';
+  var SESSION_DAYS = 30;
+
+  function dbConfigured() {
+    return /^https:\/\/.+\..+/.test(SUPABASE_URL) && SUPABASE_URL.indexOf('YOUR-PROJECT-REF') < 0 &&
+      SUPABASE_KEY && SUPABASE_KEY.indexOf('YOUR-SUPABASE') < 0;
+  }
+
+  function sb(path, method, body, prefer) {
+    var headers = { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' };
+    if (/^eyJ/.test(SUPABASE_KEY)) headers.Authorization = 'Bearer ' + SUPABASE_KEY;   // legacy JWT keys
+    if (prefer) headers.Prefer = prefer;
+    return fetch(SUPABASE_URL.replace(/\/+$/, '') + '/rest/v1/' + path, {
+      method: method || 'GET',
+      headers: headers,
+      body: body === undefined ? undefined : JSON.stringify(body)
+    }).then(function (res) {
+      return res.text().then(function (text) {
+        var data = null;
+        try { data = text ? JSON.parse(text) : null; } catch (e) { /* not JSON */ }
+        if (!res.ok) {
+          var msg = (data && (data.message || data.error)) || ('Database error ' + res.status);
+          if (res.status === 401 || res.status === 403) msg += ' (check the API key and the SQL setup)';
+          throw new Error(msg);
+        }
+        return data;
+      });
+    }, function () {
+      throw new Error('Cannot reach the database. Check the internet connection and the Supabase URL.');
+    });
+  }
+
+  /* ----- sign-in session (kept in this browser) ----- */
+  function getSession() {
+    try {
+      var s = JSON.parse(window.localStorage.getItem(SESSION_KEY));
+      if (s && s.username && s.expires > Date.now()) return s;
+    } catch (e) { /* no session */ }
+    return null;
+  }
+  function setSession(user) {
+    var s = { username: user.username, name: user.full_name || user.username, expires: Date.now() + SESSION_DAYS * 86400000 };
+    try {
+      window.localStorage.setItem(SESSION_KEY, JSON.stringify(s));
+      return !!getSession();
+    } catch (e) { return false; }
+  }
+  function clearSession() { try { window.localStorage.removeItem(SESSION_KEY); } catch (e) { /* ignore */ } }
+
+  /* ----- data cache: reads are instant, every change is written to Supabase ----- */
+  var cache = {};                                   // key -> value
+  var synced = { rates: '', projects: {}, entries: {} };   // what the database already holds
+  var pending = 0, needRefresh = false, queue = Promise.resolve();
+
+  function projectRow(p) { return { id: p.id, name: p.name, areas: p.areas }; }
+  function entryRow(e) {
+    var t = entryTotals(e);
+    return { id: e.id, entry_date: e.date, project_id: e.projectId, persons: t.persons, total_payable: t.total,
+      data: e, saved_at: e.savedAt || new Date().toISOString() };
+  }
+
+  function fetchAll() {
+    return Promise.all([
+      sb('app_settings?select=key,value&key=eq.rates'),
+      sb('projects?select=id,name,areas&order=created_at.asc,id.asc'),
+      sb('attendance_entries?select=id,data&order=entry_date.asc,saved_at.asc')
+    ]);
+  }
+  function applyRemote(r) {
+    cache = {};
+    synced = { rates: '', projects: {}, entries: {} };
+    cache[KEYS.rates] = r[0].length ? r[0][0].value : {};
+    synced.rates = JSON.stringify(cache[KEYS.rates]);
+    cache[KEYS.projects] = r[1].map(function (p) { return { id: p.id, name: p.name, areas: p.areas || {} }; });
+    cache[KEYS.projects].forEach(function (p) { synced.projects[p.id] = JSON.stringify(p); });
+    cache[KEYS.entries] = r[2].map(function (x) { return x.data; });
+    cache[KEYS.entries].forEach(function (e) { synced.entries[e.id] = JSON.stringify(e); });
+  }
+
+  // Work out what changed for one key and queue the database writes.
+  function planSync(key) {
+    var value = cache[key], del = [], up = [], table, map, isProjects;
+    if (key === KEYS.rates) {
+      var sig = JSON.stringify(value);
+      if (sig === synced.rates) return null;
+      synced.rates = sig;
+      return { table: 'app_settings', del: [], up: [{ key: 'rates', value: value, updated_at: new Date().toISOString() }] };
+    }
+    isProjects = key === KEYS.projects;
+    table = isProjects ? 'projects' : 'attendance_entries';
+    map = isProjects ? synced.projects : synced.entries;
+    var next = {};
+    value.forEach(function (item) { next[item.id] = true; });
+    Object.keys(map).forEach(function (id) { if (!next[id]) { del.push(id); delete map[id]; } });
+    value.forEach(function (item) {
+      var s = JSON.stringify(item);
+      if (map[item.id] !== s) { map[item.id] = s; up.push(isProjects ? projectRow(item) : entryRow(item)); }
+    });
+    return (del.length || up.length) ? { table: table, del: del, up: up } : null;
+  }
+
+  function finishWrite() {
+    pending--;
+    if (pending === 0 && needRefresh) { needRefresh = false; refreshFromDb(); }
+  }
+  function enqueue(plan) {
+    pending++;
+    queue = queue.then(function () {
+      var step = Promise.resolve();
+      if (plan.del.length) {
+        var ids = plan.del.map(function (id) { return '"' + encodeURIComponent(id) + '"'; }).join(',');
+        step = sb(plan.table + '?id=in.(' + ids + ')', 'DELETE', undefined, 'return=minimal');
+      }
+      return step.then(function () {
+        if (plan.up.length) return sb(plan.table, 'POST', plan.up, 'resolution=merge-duplicates,return=minimal');
+      });
+    }).then(finishWrite, function (err) {
+      needRefresh = true;
+      toast('Not saved to the database: ' + err.message, true);
+      finishWrite();
+    });
+  }
+
+  // Pull the latest data (for example after another person saved on another device).
+  function refreshFromDb() {
+    if (pending > 0 || !dbConfigured()) return Promise.resolve();
+    var before = JSON.stringify(cache);
+    return fetchAll().then(function (r) {
+      if (pending > 0) return;                       // a save started meanwhile - keep local data
+      applyRemote(r);
+      if (JSON.stringify(cache) !== before) window.dispatchEvent(new Event('storage'));
+    }, function () { /* offline: keep what is on screen */ });
+  }
+
+  var Store = {
+    get: function (key, fallback) {
+      return key in cache ? clone(cache[key]) : clone(fallback);
+    },
+    set: function (key, value) {
+      cache[key] = clone(value);
+      var plan = planSync(key);
+      if (plan) enqueue(plan);
+    }
+  };
+
+  function getRates() {
+    var saved = Store.get(KEYS.rates, {});
+    var rates = clone(DEFAULT_RATES);
+    Object.keys(rates).forEach(function (k) {
+      if (saved && isFinite(Number(saved[k])) && saved[k] !== '' && saved[k] !== null) rates[k] = Math.max(0, Number(saved[k]));
+    });
+    return rates;
+  }
+  function normalizeProject(p) {
+    var out = { id: p.id, name: p.name, areas: {} };
+    AREAS.forEach(function (a) {
+      var src = (p.areas && p.areas[a.key]) || {};
+      out.areas[a.key] = { live: num(src.live), damaged: num(src.damaged) };
+    });
+    return out;
+  }
+  function getProjects() { return Store.get(KEYS.projects, DEFAULT_PROJECTS).map(normalizeProject); }
+
+  // Plant totals: Total plants = Live + Damaged, per area and overall.
+  function plantTotals(project) {
+    var t = { rows: [], live: 0, damaged: 0, total: 0 };
+    AREAS.forEach(function (a) {
+      var r = project.areas[a.key];
+      t.rows.push({ key: a.key, label: a.label, live: r.live, damaged: r.damaged, total: r.live + r.damaged });
+      t.live += r.live; t.damaged += r.damaged;
+    });
+    t.total = t.live + t.damaged;
+    return t;
+  }
+  function allPlantTotals(projects) {
+    var sum = newProject('all', 'All projects');
+    projects.forEach(function (p) {
+      AREAS.forEach(function (a) {
+        sum.areas[a.key].live += p.areas[a.key].live;
+        sum.areas[a.key].damaged += p.areas[a.key].damaged;
+      });
+    });
+    return plantTotals(sum);
+  }
+  function getEntries() { return Store.get(KEYS.entries, []); }
+  function projectName(projects, id) {
+    for (var i = 0; i < projects.length; i++) if (projects[i].id === id) return projects[i].name;
+    return 'Unknown project';
+  }
+
+  var toastTimer;
+  function toast(msg, isError) {
+    var el = $('#toast');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'toast';
+      el.className = 'toast';
+      el.setAttribute('role', 'status');
+      document.body.appendChild(el);
+    }
+    el.textContent = msg;
+    el.classList.toggle('error', !!isError);
+    el.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.classList.remove('show'); }, 3200);
+  }
+
+  /* ---------------------------------------------------------
+     3. WAGE CALCULATION
+     (same logic as the Excel sheet:
+        male areas  × regular male rate  + female areas × regular female rate
+        + hole making × 900 + tree cutting × 1100 ;  bus fare = ₹60 per person)
+     --------------------------------------------------------- */
+
+  function sumAreas(entry, field) {
+    var total = 0;
+    AREAS.forEach(function (a) {
+      var row = entry.areas && entry.areas[a.key];
+      total += num(row && row[field]);
+    });
+    return total;
+  }
+
+  function calcEntry(entry, rates) {
+    var rm = sumAreas(entry, 'rm');
+    var rf = sumAreas(entry, 'rf');
+    var om = sumAreas(entry, 'om');
+    var of = sumAreas(entry, 'of');
+    var holeM = num(entry.hole && entry.hole.m), holeF = num(entry.hole && entry.hole.f);
+    var treeM = num(entry.tree && entry.tree.m), treeF = num(entry.tree && entry.tree.f);
+    var hole = holeM + holeF, tree = treeM + treeF;
+
+    var cats = {
+      regularMale:   { count: rm,   amount: rm * rates.regularMale },
+      regularFemale: { count: rf,   amount: rf * rates.regularFemale },
+      outerMale:     { count: om,   amount: om * rates.outerMale },
+      outerFemale:   { count: of,   amount: of * rates.outerFemale },
+      holeMaking:    { count: hole, amount: hole * rates.holeMaking },
+      treeCutting:   { count: tree, amount: tree * rates.treeCutting }
+    };
+
+    var labour = 0;
+    Object.keys(cats).forEach(function (k) { labour += cats[k].amount; });
+
+    var male = rm + om + holeM + treeM;
+    var female = rf + of + holeF + treeF;
+    var persons = male + female;
+    var busPersons = (entry.busPersons === null || entry.busPersons === undefined) ? persons : num(entry.busPersons);
+    var bus = busPersons * rates.busFare;
+
+    return {
+      male: male, female: female, persons: persons, cats: cats,
+      labour: labour, busPersons: busPersons, bus: bus, total: labour + bus
+    };
+  }
+
+  // Add several calcEntry() results together (for a day / project).
+  function emptyTotals() {
+    var cats = {};
+    CATEGORIES.forEach(function (c) { cats[c.key] = { count: 0, amount: 0 }; });
+    return { male: 0, female: 0, persons: 0, cats: cats, labour: 0, busPersons: 0, bus: 0, total: 0 };
+  }
+  function addTotals(a, b) {
+    a.male += b.male; a.female += b.female; a.persons += b.persons;
+    a.labour += b.labour; a.busPersons += b.busPersons; a.bus += b.bus; a.total += b.total;
+    CATEGORIES.forEach(function (c) {
+      a.cats[c.key].count += b.cats[c.key].count;
+      a.cats[c.key].amount += b.cats[c.key].amount;
+    });
+    return a;
+  }
+  function entryTotals(entry) {
+    // Each saved entry keeps the rates it was saved with, so old wages never change.
+    return calcEntry(entry, entry.rates || getRates());
+  }
+  function totalsForDate(entries, date) {
+    var t = emptyTotals();
+    entries.forEach(function (e) { if (e.date === date) addTotals(t, entryTotals(e)); });
+    return t;
+  }
+
+  /* ---------------------------------------------------------
+     4. DASHBOARD PAGE
+     --------------------------------------------------------- */
+
+  function initDashboard() {
+    var dateInput = $('#dashDate');
+    dateInput.value = today();
+
+    var plantTab = 'all';   // 'all' or a project id
+
+    // keepPlants = true when the change came from inside the plants table itself:
+    // the table is then updated in place so the box the user is moving into is never destroyed.
+    function render(keepPlants) {
+      keepPlants = keepPlants === true;
+      var date = dateInput.value || today();
+      var projects = getProjects();
+      var entries = getEntries();
+      var dayEntries = entries.filter(function (e) { return e.date === date; });
+      var totals = totalsForDate(entries, date);
+
+      $('#heroDate').textContent = fmtLong(date) + (date === today() ? ' · Today' : '');
+
+      // --- stat cards
+      var pt = allPlantTotals(projects);
+      $('#statPlants').textContent = count(pt.live);
+      $('#statPlantsNote').textContent = pt.total === 0
+        ? 'Enter plant counts area-wise below'
+        : 'Damaged ' + count(pt.damaged) + ' · Total ' + count(pt.total);
+      $('#statLabour').textContent = count(totals.persons);
+      $('#statLabourNote').textContent = 'Male ' + totals.male + ' · Female ' + totals.female;
+      $('#statWages').textContent = money(totals.total);
+      $('#statWagesNote').textContent = 'Labour ' + money(totals.labour) + ' + Bus fare ' + money(totals.bus);
+
+      renderCategories(totals);
+      renderProjects(dayEntries, projects, totals);
+      renderTrend(entries, date);
+      if (!projects.some(function (p) { return p.id === plantTab; })) plantTab = 'all';
+      if (keepPlants) { syncPlants(projects); }
+      else { renderPlantTabs(projects); renderPlantPanel(projects, entries); }
+    }
+
+    function emptyMessage() {
+      return '<div class="empty">No attendance entered for this date.<br><a href="attendance.html">Go to Attendance Entry →</a></div>';
+    }
+
+    function renderCategories(totals) {
+      var box = $('#categoryBreakdown');
+      if (totals.persons === 0) { box.innerHTML = emptyMessage(); return; }
+      var rates = getRates();
+      var maxAmt = Math.max.apply(null, CATEGORIES.map(function (c) { return totals.cats[c.key].amount; }).concat([1]));
+      var html = '<div class="b-row b-head"><span>Category</span><span class="num">Present</span><span class="num">Amount</span><span class="bar-cell"></span></div>';
+      CATEGORIES.forEach(function (c) {
+        var t = totals.cats[c.key];
+        if (t.count === 0) return;
+        html += '<div class="b-row"><span>' + esc(c.label) + '<br><span class="sub">' + count(t.count) + ' × ' + money(rates[c.key]) + '*</span></span>' +
+          '<span class="num">' + count(t.count) + '</span>' +
+          '<span class="num">' + money(t.amount) + '</span>' +
+          '<span class="bar-cell"><span class="bar"><span style="width:' + Math.round(t.amount / maxAmt * 100) + '%"></span></span></span></div>';
+      });
+      html += '<div class="b-row"><span>Bus fare<br><span class="sub">' + count(totals.busPersons) + ' persons</span></span><span class="num"></span><span class="num">' + money(totals.bus) + '</span><span class="bar-cell"></span></div>';
+      html += '<div class="b-row b-total"><span>Gross wages</span><span class="num">' + count(totals.persons) + '</span><span class="num">' + money(totals.total) + '</span><span class="bar-cell"></span></div>';
+      html += '<p class="sub" style="margin-top:8px">* Current rates shown; amounts use the rates saved with each entry.</p>';
+      box.innerHTML = html;
+    }
+
+    function renderProjects(dayEntries, projects, totals) {
+      var box = $('#projectBreakdown');
+      if (dayEntries.length === 0) { box.innerHTML = emptyMessage(); return; }
+      var maxAmt = Math.max.apply(null, dayEntries.map(function (e) { return entryTotals(e).total; }).concat([1]));
+      var html = '<div class="b-row b-head"><span>Project</span><span class="num">Present</span><span class="num">Wages</span><span class="bar-cell"></span></div>';
+      dayEntries.forEach(function (e) {
+        var t = entryTotals(e);
+        html += '<div class="b-row"><span>' + esc(projectName(projects, e.projectId)) + '<br><span class="sub">M ' + t.male + ' · F ' + t.female + '</span></span>' +
+          '<span class="num">' + count(t.persons) + '</span>' +
+          '<span class="num">' + money(t.total) + '</span>' +
+          '<span class="bar-cell"><span class="bar"><span style="width:' + Math.round(t.total / maxAmt * 100) + '%"></span></span></span></div>';
+      });
+      html += '<div class="b-row b-total"><span>All projects</span><span class="num">' + count(totals.persons) + '</span><span class="num">' + money(totals.total) + '</span><span class="bar-cell"></span></div>';
+      box.innerHTML = html;
+    }
+
+    function renderTrend(entries, date) {
+      var days = [];
+      for (var i = 6; i >= 0; i--) days.push(addDays(date, -i));
+      var data = days.map(function (d) { var t = totalsForDate(entries, d); return { date: d, total: t.total, persons: t.persons }; });
+      var max = Math.max.apply(null, data.map(function (x) { return x.total; }).concat([1]));
+      $('#trendChart').innerHTML = data.map(function (x) {
+        var d = parseISO(x.date);
+        var h = x.total ? Math.max(3, Math.round(x.total / max * 150)) : 3;
+        return '<div class="trend-col' + (x.date === date ? ' is-selected' : '') + '" title="' + esc(fmtLong(x.date) + ': ' + money(x.total) + ', ' + x.persons + ' present') + '">' +
+          '<span class="trend-val">' + fmtShortValue(x.total) + '</span>' +
+          '<div class="trend-bar" style="height:' + h + 'px"></div>' +
+          '<span class="trend-lbl">' + WEEKDAYS[d.getDay()] + '<br>' + d.getDate() + ' ' + MONTHS[d.getMonth()] + '</span></div>';
+      }).join('');
+    }
+
+    // ---------- Plants, area-wise ----------
+    function renderPlantTabs(projects) {
+      var tabs = [{ id: 'all', name: 'All projects' }].concat(projects.map(function (p) { return { id: p.id, name: p.name }; }));
+      $('#plantTabs').innerHTML = tabs.map(function (t) {
+        return '<button type="button" role="tab" class="tab' + (t.id === plantTab ? ' is-active' : '') + '" aria-selected="' + (t.id === plantTab) + '" data-tab="' + esc(t.id) + '">' + esc(t.name) + '</button>';
+      }).join('');
+    }
+
+    function plantTableHtml(t, editable, projectName) {
+      var body = t.rows.map(function (r) {
+        function cell(field, label) {
+          return '<td data-label="' + label + '">' + (editable
+            ? '<input class="num plant-in" type="number" min="0" step="1" inputmode="numeric" placeholder="0" value="' + (r[field] || '') + '" data-area="' + r.key + '" data-field="' + field + '" aria-label="' + esc(projectName + ' ' + r.label + ' ' + label.toLowerCase()) + '">'
+            : count(r[field])) + '</td>';
+        }
+        return '<tr><th scope="row">' + esc(r.label) + '</th>' + cell('live', 'Live plants') + cell('damaged', 'Damaged plants') +
+          '<td class="cell-total" data-total="' + r.key + '">' + count(r.total) + '</td></tr>';
+      }).join('');
+      return '<div class="table-wrap"><table class="plant-table"><thead><tr><th class="t-left">Area</th><th class="col-live">Live plants</th><th class="col-damaged">Damaged plants</th><th>Total plants</th></tr></thead>' +
+        '<tbody>' + body + '</tbody>' +
+        '<tfoot><tr><th class="t-left" scope="row">Total</th><td id="pt-live">' + count(t.live) + '</td><td id="pt-damaged">' + count(t.damaged) + '</td><td id="pt-total">' + count(t.total) + '</td></tr></tfoot></table></div>';
+    }
+
+    function renderPlantPanel(projects, entries) {
+      var box = $('#plantPanel');
+      if (plantTab === 'all') {
+        var all = allPlantTotals(projects);
+        var byProject = projects.length ? '<h3 class="sub-title">By project</h3><div class="table-wrap"><table class="plant-table"><thead><tr><th class="t-left">Project</th><th class="col-live">Live plants</th><th class="col-damaged">Damaged plants</th><th>Total plants</th></tr></thead><tbody>' +
+          projects.map(function (p) {
+            var t = plantTotals(p);
+            return '<tr><th scope="row">' + esc(p.name) + '</th><td>' + count(t.live) + '</td><td>' + count(t.damaged) + '</td><td class="cell-total">' + count(t.total) + '</td></tr>';
+          }).join('') + '</tbody></table></div>' : '';
+        box.innerHTML = '<p class="hint">Combined area-wise totals of all projects. Open a project tab to enter or change its counts.</p>' +
+          plantTableHtml(all, false, 'All projects') + byProject;
+        return;
+      }
+      var p = projects.filter(function (x) { return x.id === plantTab; })[0];
+      var used = entries.some(function (e) { return e.projectId === p.id; });
+      box.innerHTML = '<div class="proj-bar"><label>Project name<input type="text" class="proj-name" value="' + esc(p.name) + '" maxlength="40"></label>' +
+        '<button type="button" class="btn btn-sm btn-danger" data-remove="' + esc(p.id) + '" ' + (used ? 'disabled title="Has attendance entries – cannot remove"' : '') + '>Remove project</button></div>' +
+        '<p class="hint">Enter live and damaged plants for each area. Total plants = live + damaged.</p>' +
+        plantTableHtml(plantTotals(p), true, p.name);
+    }
+
+    // Update numbers / labels in place (no rebuild, so focus is never lost).
+    function syncPlants(projects) {
+      var tabBtn;
+      projects.forEach(function (p) {
+        tabBtn = $('#plantTabs [data-tab="' + p.id + '"]');
+        if (tabBtn && tabBtn.textContent !== p.name) tabBtn.textContent = p.name;
+      });
+      var t = plantTab === 'all' ? allPlantTotals(projects) : plantTotals(projects.filter(function (x) { return x.id === plantTab; })[0]);
+      t.rows.forEach(function (r) { var c = $('[data-total="' + r.key + '"]'); if (c) c.textContent = count(r.total); });
+      $('#pt-live').textContent = count(t.live);
+      $('#pt-damaged').textContent = count(t.damaged);
+      $('#pt-total').textContent = count(t.total);
+    }
+
+    // --- events
+    dateInput.addEventListener('change', function () { render(); });
+    $('#prevDay').addEventListener('click', function () { dateInput.value = addDays(dateInput.value || today(), -1); render(); });
+    $('#nextDay').addEventListener('click', function () { dateInput.value = addDays(dateInput.value || today(), 1); render(); });
+    $('#todayBtn').addEventListener('click', function () { dateInput.value = today(); render(); });
+
+    $('#plantTabs').addEventListener('click', function (ev) {
+      var btn = ev.target.closest('[data-tab]');
+      if (!btn) return;
+      plantTab = btn.dataset.tab;
+      render();
+    });
+
+    $('#plantPanel').addEventListener('change', function (ev) {
+      var projects = getProjects();
+      var p = projects.filter(function (x) { return x.id === plantTab; })[0];
+      if (!p) return;
+      if (ev.target.classList.contains('plant-in')) {
+        var v = num(ev.target.value);
+        ev.target.value = v || '';
+        p.areas[ev.target.dataset.area][ev.target.dataset.field] = v;
+      } else if (ev.target.classList.contains('proj-name')) {
+        var name = ev.target.value.trim();
+        var clash = projects.some(function (x) { return x.id !== p.id && x.name.toLowerCase() === name.toLowerCase(); });
+        if (!name || clash) {
+          ev.target.value = p.name;
+          toast(!name ? 'Project name cannot be empty.' : 'A project with that name already exists.', true);
+          return;
+        }
+        p.name = name;
+      } else { return; }
+      Store.set(KEYS.projects, projects);
+      render(true);
+    });
+
+    $('#plantPanel').addEventListener('click', function (ev) {
+      var btn = ev.target.closest('[data-remove]');
+      if (!btn || btn.disabled) return;
+      var projects = getProjects();
+      var p = projects.filter(function (x) { return x.id === btn.dataset.remove; })[0];
+      if (!p || !window.confirm('Remove project "' + p.name + '" and its plant counts?')) return;
+      Store.set(KEYS.projects, projects.filter(function (x) { return x.id !== p.id; }));
+      plantTab = 'all';
+      render();
+    });
+
+    $('#addProjectForm').addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var input = $('#newProjectName');
+      var name = input.value.trim();
+      var projects = getProjects();
+      if (!name) { toast('Enter a project name.', true); return; }
+      if (projects.some(function (p) { return p.name.toLowerCase() === name.toLowerCase(); })) { toast('That project already exists.', true); return; }
+      var np = newProject('p-' + uid(), name);
+      projects.push(np);
+      Store.set(KEYS.projects, projects);
+      input.value = '';
+      plantTab = np.id;
+      render();
+      toast(name + ' added. Enter its plant counts for each area.');
+    });
+
+    // Refresh when data changes in another tab (e.g. attendance saved).
+    window.addEventListener('storage', function () { render(); });
+    render();
+  }
+
+  /* ---------------------------------------------------------
+     5. ATTENDANCE ENTRY PAGE
+     --------------------------------------------------------- */
+
+  function initAttendance() {
+    var form = $('#attForm');
+    var activeRates = getRates();   // rates used for the form right now
+    var editingId = null;
+
+    var AREA_FIELDS = [
+      { f: 'rm', label: 'Regular Male' },
+      { f: 'rf', label: 'Regular Female' },
+      { f: 'om', label: 'Outer Male' },
+      { f: 'of', label: 'Outer Female' }
+    ];
+
+    function inputHtml(group, key, field, label) {
+      return '<input class="num" type="number" min="0" step="1" inputmode="numeric" placeholder="0" ' +
+        'data-group="' + group + '"' + (key ? ' data-key="' + key + '"' : '') + ' data-field="' + field + '" aria-label="' + esc(label) + '">';
+    }
+
+    // --- build the form rows
+    function buildTables() {
+      $('#areaTable tbody').innerHTML = AREAS.map(function (a) {
+        return '<tr data-area="' + a.key + '"><th scope="row">' + esc(a.label) + '</th>' +
+          AREA_FIELDS.map(function (f) {
+            return '<td data-label="' + f.label + '">' + inputHtml('areas', a.key, f.f, a.label + ' ' + f.label) + '</td>';
+          }).join('') +
+          '<td class="cell-persons" data-label="Persons" data-out="persons">0</td>' +
+          '<td class="cell-amount" data-label="Amount" data-out="amount">₹0</td></tr>';
+      }).join('');
+
+      $('#specialTable tbody').innerHTML = SPECIAL.map(function (s) {
+        return '<tr data-special="' + s.key + '"><th scope="row">' + esc(s.label) + '</th>' +
+          '<td data-label="Male">' + inputHtml(s.key, '', 'm', s.label + ' male') + '</td>' +
+          '<td data-label="Female">' + inputHtml(s.key, '', 'f', s.label + ' female') + '</td>' +
+          '<td class="rate-tag" data-label="Rate / day" data-out="rate"></td>' +
+          '<td class="cell-persons" data-label="Persons" data-out="persons">0</td>' +
+          '<td class="cell-amount" data-label="Amount" data-out="amount">₹0</td></tr>';
+      }).join('');
+    }
+
+    function readForm() {
+      var entry = {
+        date: $('#entryDate').value,
+        projectId: $('#entryProject').value,
+        areas: {}, hole: { m: 0, f: 0 }, tree: { m: 0, f: 0 }, busPersons: null
+      };
+      AREAS.forEach(function (a) { entry.areas[a.key] = { rm: 0, rf: 0, om: 0, of: 0 }; });
+      $$('input[data-group]').forEach(function (inp) {
+        var v = num(inp.value);
+        if (inp.dataset.group === 'areas') entry.areas[inp.dataset.key][inp.dataset.field] = v;
+        else entry[inp.dataset.group][inp.dataset.field] = v;
+      });
+      var bp = $('#busPersons').value.trim();
+      entry.busPersons = bp === '' ? null : num(bp);
+      return entry;
+    }
+
+    function fillForm(entry) {
+      $('#entryDate').value = entry.date;
+      $('#entryProject').value = entry.projectId;
+      $$('input[data-group]').forEach(function (inp) {
+        var v = inp.dataset.group === 'areas'
+          ? ((entry.areas[inp.dataset.key] || {})[inp.dataset.field])
+          : ((entry[inp.dataset.group] || {})[inp.dataset.field]);
+        inp.value = num(v) ? num(v) : '';
+      });
+      $('#busPersons').value = entry.busPersons === null || entry.busPersons === undefined ? '' : entry.busPersons;
+    }
+
+    function clearNumbers() {
+      $$('input[data-group]').forEach(function (inp) { inp.value = ''; });
+      $('#busPersons').value = '';
+    }
+
+    function showRates() {
+      CATEGORIES.slice(0, 4).forEach(function (c) { $('#rt-' + c.key).textContent = money(activeRates[c.key]) + ' / day'; });
+      SPECIAL.forEach(function (s) { $('[data-special="' + s.key + '"] [data-out="rate"]').textContent = money(activeRates[s.rate]); });
+      $('#busNote').textContent = 'Bus fare is ' + money(activeRates.busFare) + ' per person. Leave blank to apply it to everyone present.';
+    }
+
+    // --- live calculation
+    function recalc() {
+      var entry = readForm();
+      var r = activeRates;
+
+      AREAS.forEach(function (a) {
+        var row = entry.areas[a.key];
+        var tr = $('[data-area="' + a.key + '"]');
+        $('[data-out="persons"]', tr).textContent = row.rm + row.rf + row.om + row.of;
+        $('[data-out="amount"]', tr).textContent = money(row.rm * r.regularMale + row.rf * r.regularFemale + row.om * r.outerMale + row.of * r.outerFemale);
+      });
+      SPECIAL.forEach(function (s) {
+        var row = entry[s.key];
+        var tr = $('[data-special="' + s.key + '"]');
+        $('[data-out="persons"]', tr).textContent = row.m + row.f;
+        $('[data-out="amount"]', tr).textContent = money((row.m + row.f) * r[s.rate]);
+      });
+
+      var t = calcEntry(entry, r);
+      $('#busPersons').placeholder = 'auto (' + t.persons + ')';
+      $('#sumPersons').textContent = count(t.persons);
+      $('#sumMF').textContent = t.male + ' · ' + t.female;
+      $('#sumLabour').textContent = money(t.labour);
+      $('#sumBus').textContent = money(t.bus);
+      $('#sumTotal').textContent = money(t.total);
+    }
+
+    // --- projects dropdown
+    function fillProjects(selected) {
+      var projects = getProjects();
+      var sel = $('#entryProject');
+      sel.innerHTML = projects.length
+        ? projects.map(function (p) { return '<option value="' + esc(p.id) + '">' + esc(p.name) + '</option>'; }).join('')
+        : '<option value="">No projects – add one on the Dashboard</option>';
+      if (selected && projects.some(function (p) { return p.id === selected; })) sel.value = selected;
+    }
+
+    // --- edit mode
+    function setEditing(entry) {
+      editingId = entry ? entry.id : null;
+      activeRates = entry && entry.rates ? clone(entry.rates) : getRates();
+      var banner = $('#editBanner');
+      banner.hidden = !entry;
+      if (entry) {
+        $('#editBannerText').textContent = 'Editing ' + projectName(getProjects(), entry.projectId) + ' · ' + fmtLong(entry.date) +
+          '. Wages use the rates saved with this entry.';
+      }
+      $('#saveBtn').textContent = entry ? 'Update entry' : 'Save entry';
+      showRates();
+    }
+
+    // --- saved entries list for the selected date
+    function renderSaved() {
+      var date = $('#entryDate').value || today();
+      $('#savedDateLabel').textContent = fmtLong(date);
+      var projects = getProjects();
+      var list = getEntries().filter(function (e) { return e.date === date; });
+      var box = $('#savedEntries');
+      if (!list.length) { box.innerHTML = '<div class="empty">No entries saved for this date yet.</div>'; return; }
+
+      var sum = emptyTotals();
+      var rows = list.map(function (e) {
+        var t = entryTotals(e);
+        addTotals(sum, t);
+        return '<tr><th class="t-left" scope="row">' + esc(projectName(projects, e.projectId)) + '</th>' +
+          '<td>' + count(t.persons) + '</td><td>' + t.male + ' · ' + t.female + '</td>' +
+          '<td class="t-num">' + money(t.labour) + '</td><td class="t-num">' + money(t.bus) + '</td>' +
+          '<td class="t-num"><strong>' + money(t.total) + '</strong></td>' +
+          '<td style="white-space:nowrap"><button type="button" class="btn btn-sm" data-edit="' + esc(e.id) + '">Edit</button> ' +
+          '<button type="button" class="btn btn-sm btn-danger" data-delete="' + esc(e.id) + '">Delete</button></td></tr>';
+      }).join('');
+
+      box.innerHTML = '<div class="table-wrap"><table class="list-table"><thead><tr><th class="t-left">Project</th><th>Persons</th><th>M · F</th><th>Labour</th><th>Bus fare</th><th>Total payable</th><th></th></tr></thead>' +
+        '<tbody>' + rows + '</tbody>' +
+        '<tfoot><tr><th class="t-left" scope="row">Day total</th><td>' + count(sum.persons) + '</td><td>' + sum.male + ' · ' + sum.female + '</td>' +
+        '<td class="t-num">' + money(sum.labour) + '</td><td class="t-num">' + money(sum.bus) + '</td><td class="t-num">' + money(sum.total) + '</td><td></td></tr></tfoot></table></div>';
+    }
+
+    // --- save
+    function onSubmit(ev) {
+      ev.preventDefault();
+      var entry = readForm();
+      if (!entry.date) { toast('Please choose a date.', true); return; }
+      if (!entry.projectId) { toast('Please choose a project.', true); return; }
+      var t = calcEntry(entry, activeRates);
+      if (t.persons === 0) { toast('Enter at least one labourer before saving.', true); return; }
+
+      var entries = getEntries();
+      var projects = getProjects();
+      var clash = entries.filter(function (e) { return e.date === entry.date && e.projectId === entry.projectId && e.id !== editingId; })[0];
+      if (clash) {
+        var ok = window.confirm('An entry for ' + projectName(projects, entry.projectId) + ' on ' + fmtLong(entry.date) + ' already exists.\nReplace it with this one?');
+        if (!ok) return;
+        entries = entries.filter(function (e) { return e.id !== clash.id; });
+      }
+
+      entry.id = editingId || uid();
+      entry.rates = clone(activeRates);
+      entry.savedAt = new Date().toISOString();
+
+      var replaced = false;
+      entries = entries.map(function (e) { if (e.id === entry.id) { replaced = true; return entry; } return e; });
+      if (!replaced) entries.push(entry);
+      Store.set(KEYS.entries, entries);
+
+      var wasEditing = !!editingId;
+      toast((wasEditing ? 'Updated ' : 'Saved ') + projectName(projects, entry.projectId) + ' · ' + money(t.total) + ' payable');
+      setEditing(null);
+      clearNumbers();
+      recalc();
+      renderSaved();
+    }
+
+    // --- events
+    form.addEventListener('submit', onSubmit);
+    form.addEventListener('input', recalc);
+    form.addEventListener('focusin', function (ev) { if (ev.target.matches('input[type="number"]')) ev.target.select(); });
+    $('#entryDate').addEventListener('change', renderSaved);
+
+    $('#clearBtn').addEventListener('click', function () {
+      setEditing(null);
+      clearNumbers();
+      recalc();
+    });
+    $('#cancelEdit').addEventListener('click', function () {
+      setEditing(null);
+      clearNumbers();
+      recalc();
+    });
+
+    $('#savedEntries').addEventListener('click', function (ev) {
+      var editBtn = ev.target.closest('[data-edit]');
+      var delBtn = ev.target.closest('[data-delete]');
+      var entries = getEntries();
+      if (editBtn) {
+        var e = entries.filter(function (x) { return x.id === editBtn.dataset.edit; })[0];
+        if (!e) return;
+        fillProjects(e.projectId);
+        fillForm(e);
+        setEditing(e);
+        recalc();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (delBtn) {
+        var d = entries.filter(function (x) { return x.id === delBtn.dataset.delete; })[0];
+        if (!d || !window.confirm('Delete the entry for ' + projectName(getProjects(), d.projectId) + ' on ' + fmtLong(d.date) + '?')) return;
+        Store.set(KEYS.entries, entries.filter(function (x) { return x.id !== d.id; }));
+        if (editingId === d.id) { setEditing(null); clearNumbers(); recalc(); }
+        renderSaved();
+        toast('Entry deleted');
+      }
+    });
+
+    // --- rates panel
+    function fillRateInputs(rates) {
+      $$('[data-rate]').forEach(function (inp) { inp.value = rates[inp.dataset.rate]; });
+    }
+    $('#saveRates').addEventListener('click', function () {
+      var rates = {};
+      $$('[data-rate]').forEach(function (inp) { rates[inp.dataset.rate] = Math.max(0, Number(inp.value) || 0); });
+      Store.set(KEYS.rates, rates);
+      if (!editingId) { activeRates = getRates(); showRates(); recalc(); }
+      toast('Wage rates saved. They apply to new entries.');
+    });
+    $('#resetRates').addEventListener('click', function () {
+      Store.set(KEYS.rates, DEFAULT_RATES);
+      fillRateInputs(DEFAULT_RATES);
+      if (!editingId) { activeRates = getRates(); showRates(); recalc(); }
+      toast('Rates reset to the Excel sheet values.');
+    });
+
+    // --- CSV export (opens in Excel)
+    $('#exportBtn').addEventListener('click', function () {
+      var entries = getEntries().slice().sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+      if (!entries.length) { toast('No entries to export yet.', true); return; }
+      var projects = getProjects();
+      var head = ['Date', 'Project'];
+      AREAS.forEach(function (a) {
+        AREA_FIELDS.forEach(function (f) { head.push(a.label + ' ' + f.label); });
+      });
+      head = head.concat(['Hole making Male', 'Hole making Female', 'Tree cutting Male', 'Tree cutting Female',
+        'Total Male', 'Total Female', 'Total Persons', 'Labour Amount', 'Bus Persons', 'Bus Fare', 'Total Payable']);
+      var rows = entries.map(function (e) {
+        var t = entryTotals(e);
+        var r = [e.date, projectName(projects, e.projectId)];
+        AREAS.forEach(function (a) {
+          AREA_FIELDS.forEach(function (f) { r.push(num(e.areas[a.key] && e.areas[a.key][f.f])); });
+        });
+        return r.concat([num(e.hole.m), num(e.hole.f), num(e.tree.m), num(e.tree.f),
+          t.male, t.female, t.persons, t.labour, t.busPersons, t.bus, t.total]);
+      });
+      function cell(v) {
+        var s = String(v);
+        if (/^[=+\-@]/.test(s)) s = "'" + s;   // stop spreadsheet formula injection
+        return '"' + s.replace(/"/g, '""') + '"';
+      }
+      var csv = '﻿' + [head].concat(rows).map(function (r) { return r.map(cell).join(','); }).join('\r\n');
+      var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'cardamom_labour_attendance_' + today() + '.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+    });
+
+    window.addEventListener('storage', function () { fillProjects($('#entryProject').value); renderSaved(); });
+
+    // --- start
+    buildTables();
+    $('#entryDate').value = today();
+    fillProjects();
+    fillRateInputs(getRates());
+    showRates();
+    recalc();
+    renderSaved();
+  }
+
+  /* ---------------------------------------------------------
+     6. BACKGROUND PHOTOS
+     Uses real photos from images/photos/ when they exist;
+     otherwise the soft illustrated backdrop stays.
+     --------------------------------------------------------- */
+  function initBackground() {
+    var found = [];
+    var pending = BACKGROUND_PHOTOS.length;
+    if (!pending) return;
+
+    function finish() {
+      pending--;
+      if (pending > 0) return;
+      var photos = found.filter(Boolean);
+      if (!photos.length) return;
+
+      var stage = document.createElement('div');
+      stage.className = 'bg-stage';
+      stage.setAttribute('aria-hidden', 'true');
+      photos.forEach(function (src) {
+        var layer = document.createElement('div');
+        layer.className = 'bg-photo';
+        layer.style.backgroundImage = 'url("' + src + '")';
+        stage.appendChild(layer);
+      });
+      document.body.insertBefore(stage, document.body.firstChild);
+      document.body.classList.add('has-photo');
+
+      var layers = stage.children, current = 0;
+      layers[0].classList.add('is-active');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (layers.length > 1 && !reduce) {
+        setInterval(function () {
+          layers[current].classList.remove('is-active');
+          current = (current + 1) % layers.length;
+          layers[current].classList.add('is-active');
+        }, BACKGROUND_SECONDS * 1000);
+      }
+    }
+
+    BACKGROUND_PHOTOS.forEach(function (src, i) {
+      var img = new Image();
+      img.onload = function () { found[i] = src; finish(); };
+      img.onerror = finish;
+      img.src = src;
+    });
+  }
+
+  /* ----- login page ----- */
+  function initLogin() {
+    if (getSession()) { window.location.replace('home.html'); return; }
+    var form = $('#loginForm'), msg = $('#loginMsg'), btn = $('#loginBtn');
+    var userInput = $('#loginUser'), passInput = $('#loginPass');
+
+    function showMsg(text) { msg.textContent = text; msg.hidden = !text; }
+    if (!dbConfigured()) {
+      showMsg('The database is not connected yet. Open this file and paste your Supabase URL and API key into SUPABASE_URL and SUPABASE_KEY.');
+    }
+    $('#showPass').addEventListener('change', function (ev) { passInput.type = ev.target.checked ? 'text' : 'password'; });
+
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var u = userInput.value.trim(), p = passInput.value;
+      if (!dbConfigured()) { showMsg('Add your Supabase URL and API key first (see SUPABASE_URL / SUPABASE_KEY in this file).'); return; }
+      if (!u || !p) { showMsg('Enter your user name and password.'); return; }
+      showMsg('');
+      btn.disabled = true; btn.textContent = 'Signing in…';
+      sb('rpc/app_login', 'POST', { p_username: u, p_password: p }).then(function (rows) {
+        if (!rows || !rows.length) throw new Error('Wrong user name or password.');
+        if (!setSession(rows[0])) throw new Error('This browser is blocking storage, so the sign-in cannot be kept. Allow site data and try again.');
+        window.location.replace('home.html');
+      }).catch(function (err) {
+        showMsg(err.message);
+        btn.disabled = false; btn.textContent = 'Sign in';
+        passInput.focus(); passInput.select();
+      });
+    });
+    userInput.focus();
+  }
+
+  /* ----- signed-in bar in the header ----- */
+  function addUserBar(session) {
+    var nav = $('.main-nav');
+    if (!nav) return;
+    var chip = document.createElement('span');
+    chip.className = 'user-chip';
+    chip.textContent = session.name;
+    var out = document.createElement('button');
+    out.type = 'button'; out.className = 'nav-logout'; out.textContent = 'Logout';
+    out.addEventListener('click', function () { clearSession(); window.location.replace('index.html'); });
+    nav.appendChild(chip);
+    nav.appendChild(out);
+  }
+
+  function showFatal(text) {
+    document.body.classList.remove('is-loading');
+    var main = $('main');
+    main.innerHTML = '<section class="card fatal"><h2>Cannot open the data</h2><p></p>' +
+      '<div class="fatal-actions"><button type="button" class="btn btn-primary" id="retryBtn">Try again</button>' +
+      '<button type="button" class="btn" id="fatalLogout">Logout</button></div></section>';
+    $('p', main).textContent = text;
+    $('#retryBtn').addEventListener('click', function () { window.location.reload(); });
+    $('#fatalLogout').addEventListener('click', function () { clearSession(); window.location.replace('index.html'); });
+  }
+
+  /* ---------------------------------------------------------
+     7. START
+     --------------------------------------------------------- */
+  initBackground();
+  var page = document.body.getAttribute('data-page');
+
+  if (page === 'login') {
+    initLogin();
+  } else {
+    var session = getSession();
+    if (!session) {
+      window.location.replace('index.html');
+    } else {
+      addUserBar(session);
+      var run = function () {
+        if (page === 'dashboard') initDashboard();
+        else if (page === 'attendance') initAttendance();
+        // page3: intentionally blank
+        document.body.classList.remove('is-loading');
+      };
+      if (page === 'page3') {
+        run();
+      } else if (!dbConfigured()) {
+        showFatal('The database is not connected yet. Open this file and paste your Supabase URL and API key into SUPABASE_URL and SUPABASE_KEY.');
+      } else {
+        document.body.classList.add('is-loading');
+        fetchAll().then(function (r) { applyRemote(r); run(); }, function (err) { showFatal(err.message); });
+        // pick up changes saved from another device when this window is used again
+        window.addEventListener('focus', refreshFromDb);
+        document.addEventListener('visibilitychange', function () { if (!document.hidden) refreshFromDb(); });
+      }
+    }
+  }
+
+  // exposed for quick testing in the browser console
+  window.PrithviWages = { calcEntry: calcEntry, DEFAULT_RATES: DEFAULT_RATES };
+})();
+
+</script>
+</body>
+</html>
